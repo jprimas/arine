@@ -19,7 +19,6 @@ spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
 
-print("jbpjbp")
 ds = glueContext.create_dynamic_frame.from_catalog(database = "arine", table_name = "raw_pharmacy_1_csv", transformation_ctx = "ds1")
 
 ds = ApplyMapping.apply(frame = ds, mappings = [
