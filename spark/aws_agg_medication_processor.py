@@ -38,7 +38,7 @@ ds = ApplyMapping.apply(frame = ds, mappings = [
 df = ds.toDF()
 
 # Aggregate data over patientId and genericName
-agg_df = df.orderBy("fillDate").rollup("patientId", "genericName").agg(
+agg_df = df.orderBy("fillDate").groupby("patientId", "genericName").agg(
     last("ndc9", True).alias("ndc9"),
     last("quantity", True).alias("quantity"),
     last("dayssupply", True).alias("daysSupply"),

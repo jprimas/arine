@@ -61,7 +61,7 @@ df = df.drop('product_service_identification').drop('memberNumber')
 # Clean up NaN values for daysSupply, dosageUnit, quantity
 df = df.fillna({'daysSupply': 0, 'dosageUnit': 0, 'quantity': 0})
 # Aggregate over patientId, ndc9, and fillDate
-agg_df = df.rollup("patientId", "ndc9", "fillDate").agg(
+agg_df = df.groupby("patientId", "ndc9", "fillDate").agg(
     sum("quantity").alias("quantity"),
     sum("daysSupply").alias("daysSupply"),
     last("brandName").alias("brandName"),
